@@ -217,6 +217,6 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-$.pptx
-$.html
-$.md
+*.pptx
+*.html
+*.md
