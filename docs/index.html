@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Explore a dinosaur scene reconstructed from 62 photographs with an incremental Python Structure-from-Motion pipeline."
+      content="Dinosaur reconstruction from 62 photographs. A Structure from Motion course project."
     />
     <meta name="theme-color" content="#151719" />
     <title>Dinosaur — Structure from Motion</title>
@@ -26,11 +26,11 @@
       <section class="intro" aria-labelledby="title">
         <div>
           <p class="eyebrow">Multi-view geometry / Python</p>
-          <h1 id="title">A scene, recovered<br />from photographs.</h1>
+          <h1 id="title">Dinosaur<br />reconstruction.</h1>
         </div>
         <p class="intro-note">
-          Explore the point cloud and camera poses recovered by a calibrated,
-          incremental SfM pipeline.
+          A computer vision course project using 62 calibrated photographs.
+          Rotate the point cloud below to inspect the result.
         </p>
       </section>
       <section class="workspace" aria-label="Interactive reconstruction">
@@ -132,8 +132,8 @@
       </section>
       <section class="method" aria-labelledby="method-title">
         <div class="section-heading">
-          <h2 id="method-title">From pixels to geometry</h2>
-          <p>Five stages, implemented in six Python modules.</p>
+          <h2 id="method-title">Method</h2>
+          <p>Incremental Structure from Motion.</p>
         </div>
         <div class="pipeline">
           <div>
@@ -154,7 +154,7 @@
           </div>
           <div>
             <h3>Bundle adjustment</h3>
-            <p>Joint sparse reprojection refinement.</p>
+            <p>Refine camera poses and 3D points.</p>
           </div>
         </div>
         <div class="evidence">
@@ -184,7 +184,7 @@
       </section>
       <section class="evaluation" aria-labelledby="evaluation-title">
         <div class="section-heading">
-          <h2 id="evaluation-title">Measured on this run</h2>
+          <h2 id="evaluation-title">Results</h2>
           <p id="resolution-note">
             Reprojection errors are measured at the processing resolution.
           </p>
@@ -208,19 +208,17 @@
         </div>
         <p class="evaluation-note" id="ba-note"></p>
         <p class="evaluation-note">
-          The essential-only and reduced-image runs use different feature
-          tracks. Pair agreement checks every verified match for positive depth
-          and a maximum 2 px reprojection error in both views. Monocular
-          reconstruction has arbitrary scale. Reprojection error measures image
-          consistency. Ground-truth camera poses and point clouds were
-          unavailable for this evaluation.
+          Runs use different tracks; only the before/after BA errors are directly
+          comparable. Pair agreement requires positive depth and ≤2 px error in
+          both views. Scale is arbitrary; no ground-truth poses or geometry were
+          available to check 3D accuracy.
         </p>
       </section>
     </main>
     <footer>
-      <span>Haoyuan Zheng · Computer vision</span
+      <span>Haoyuan Zheng · Computer vision course project</span
       ><a href="https://github.com/7henghhhy/reconstrct-dino"
-        >Code & reproducibility ↗</a
+        >Source code ↗</a
       >
     </footer>
   </body>

@@ -1,6 +1,6 @@
-# Dinosaur · Incremental Structure from Motion
+# Dinosaur reconstruction
 
-Reconstruct a dinosaur exhibit from 62 calibrated photographs using an incremental Python SfM pipeline. Inspect the recovered scene, camera poses and source images in a browser.
+A computer vision course project: reconstruct a dinosaur exhibit from 62 calibrated photographs using incremental Structure from Motion (SfM).
 
 ![Reconstructed dinosaur exhibit and interactive viewer](docs/assets/preview.png)
 
@@ -12,13 +12,11 @@ Reconstruct a dinosaur exhibit from 62 calibrated photographs using an increment
 python3 -m http.server 8000 --directory docs
 ```
 
-Open [the local viewer](http://localhost:8000). Drag to orbit, shift-drag to pan and scroll to zoom. The controls switch between two-view initialization and the full reconstruction, display camera frustums, and select an input photograph. Keyboard controls include arrow keys, `+`, `-` and `Home`. A WebGL-capable browser is required.
+Open [localhost:8000](http://localhost:8000). Drag to rotate, shift-drag to pan, and scroll to zoom. The sidebar switches reconstruction stages, shows cameras, and selects input images. Point clouds and poses can be downloaded from the page.
 
-The viewer loads measured results from `docs/assets/scene.json`. The full point cloud, camera poses and run metrics are downloadable from the page.
+## Run the reconstruction
 
-## Reproduce the reconstruction
-
-Use Python 3.11. The pinned dependencies match the local validation environment.
+Requires Python 3.11, OpenCV, NumPy, SciPy, and Open3D.
 
 ```bash
 git clone https://github.com/7henghhhy/reconstrct-dino.git
@@ -28,54 +26,39 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-Download `dinosaur-data.zip` from the dataset release and extract it at the repository root. You can use GitHub CLI for this step.
+Download and extract the [dataset](https://github.com/7henghhhy/reconstrct-dino/releases/tag/dinosaur-data-v1) at the repository root, or use GitHub CLI:
 
 ```bash
 gh release download dinosaur-data-v1 --pattern dinosaur-data.zip
 python -m zipfile -e dinosaur-data.zip .
 ```
 
-Expected inputs are `重建所需数据/images/` containing 62 JPEG images and `重建所需数据/camera_intrinsic.txt` containing a 3×3 calibration matrix. The dataset archive SHA-256 is `473e5ab60d04c98bff080ccfc3c076c11832aad12a10fd354d3809c9a004177e`.
+The extracted folder should contain `重建所需数据/images/` (62 JPEGs) and `重建所需数据/camera_intrinsic.txt` (3×3 intrinsics).
 
 ```bash
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python main.py --demo-dir docs/assets
 ```
 
-The default configuration resizes images to 1600×1200 and scales the intrinsic matrix accordingly. It retains up to 6,000 SIFT features per image and matches a circular window of six neighboring views. `python main.py --help` lists input, output, sampling and optimization options.
+Defaults: 1600×1200 images with scaled intrinsics, up to 6,000 SIFT features per image, and circular matching over six neighboring views. See `python main.py --help` for options.
 
-### Generated files
+### Outputs
 
-| File under `outputs/`                       | Contents                                                                                   |
-| ------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `keypoints.jpg`, `matches.jpg`              | Feature and initialization-match visualizations                                            |
-| `initial_points.ply`, `initialization.json` | Two-view seed cloud, image indices and world-to-camera poses                               |
-| `pre_ba.npz`                                | Poses, points, colors, observation indices and scaled intrinsics before BA                 |
-| `reconstruction.npz`                        | Optimized geometry, observations and final point-export mask                               |
-| `final_points.ply`                          | RGB full-scene sparse point cloud                                                          |
-| `final_poses.txt`                           | One flattened 4×4 world-to-camera matrix per input image                                   |
-| `reconstruction.ply`, `reconstruction.txt`  | Submission-format copies with a configurable basename                                      |
-| `metrics.json`                              | Configuration, image order, registration log, reprojection statistics and optimizer status |
+| File in `outputs/` | Contents |
+| --- | --- |
+| `keypoints.jpg`, `matches.jpg` | Feature and match visualizations |
+| `initial_points.ply`, `initialization.json` | Initial cloud and poses |
+| `pre_ba.npz`, `reconstruction.npz` | Geometry and observations before/after BA |
+| `final_points.ply`, `final_poses.txt` | Colored point cloud and world-to-camera poses |
+| `reconstruction.ply`, `reconstruction.txt` | Submission copies; rename with `--student-id YOUR_ID` |
+| `metrics.json` | Image order, errors, registration log, and solver status |
 
-For course-style filenames, pass `--student-id YOUR_ID`. Outputs are written to `outputs/YOUR_ID.ply` and `outputs/YOUR_ID.txt`.
-
-The image `DJI_20200223_163225_243.jpg` defines the world coordinate system. Its pose is the identity matrix and occupies the first row. `metrics.json` records the remaining image order. The default dataset exports 62 rows of 16 values. Custom image sets use their first sorted image when the designated reference is absent.
-
-An incomplete registration raises an error and records missing image names in `failure.json`. All successfully exported cameras have estimated poses. Run completion is recorded in `metrics.json`.
+Each pose row is a flattened 4×4 world-to-camera matrix (62 rows for this dataset). `DJI_20200223_163225_243.jpg` is the reference camera: its pose is identity and appears first. Custom datasets fall back to the first sorted image. Missing registrations stop the run and are listed in `failure.json`.
 
 ## Method
 
-| Module           | Implementation                                                                                                           |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `feature.py`     | Calibrated image resizing and OpenCV SIFT feature extraction                                                             |
-| `match.py`       | Bidirectional Lowe ratio test, one-to-one matching and fundamental-matrix RANSAC                                         |
-| `initialize.py`  | Anchor-pair selection by valid triangulations, essential-matrix pose recovery, positive-depth and parallax checks        |
-| `reconstruct.py` | Track bookkeeping, correspondence voting, PnP RANSAC with LM refinement, candidate retries and incremental triangulation |
-| `ba.py`          | Joint sparse robust least squares using analytic projection derivatives and SciPy LSMR                                   |
-| `main.py`        | Pipeline orchestration, color sampling, independent pair checks, exports and viewer asset generation                     |
+SIFT → mutual ratio matching and RANSAC → essential-matrix initialization → PnP registration and triangulation → sparse bundle adjustment. The stages are split across `feature.py`, `match.py`, `initialize.py`, `reconstruct.py`, and `ba.py`, with `main.py` as the entry point.
 
-Each feature belongs to at most one 3D point. Each point has at most one observation per image. New points require positive depth in both cameras, at least 1.5° triangulation angle and at most 2 px reprojection error. PnP uses a 3 px threshold. Exported points must satisfy a 4 px maximum error across their optimized observations.
-
-BA minimizes a `soft_l1` reprojection objective with fixed intrinsics. It fixes the reference camera and one nonzero translation component of a second camera, removing the seven-degree-of-freedom similarity gauge. Its JSON status includes the solver termination message and evaluation count. Colors are median RGB samples across a point's observations.
+New points need positive depth, at least 1.5° parallax, and at most 2 px reprojection error. PnP uses 3 px; final export filtering uses 4 px. BA uses SciPy sparse least squares with `soft_l1` loss and fixed intrinsics. The reference pose and one translation component of a second camera are fixed to remove gauge freedom.
 
 ## Results and ablations
 
@@ -86,43 +69,31 @@ BA minimizes a `soft_l1` reprojection objective with fixed intrinsics. It fixes 
 | PnP + BA, half images          | 31     | 22,107                         | 0.327 px   | 0.259 px     | 3.34              | 98.6%          | Budget reached (300) |
 | Essential-only, unit baselines | 62     | 64,629                         | 0.311 px   | 0.165 px     | 2.08              | 61.0%          | Disabled             |
 
-The full run exports **33,383 points** after filtering and registers **62/62 cameras**. BA reaches the relative-cost termination condition after 80 evaluations. The 31-image ablation reaches its explicit 300-evaluation budget, and its optimization remains incomplete. All errors are in pixels at 1600×1200 resolution.
+The full run exports **33,383 points** and registers **62/62 cameras**. BA converges after 80 evaluations; the 31-image run reaches its 300-evaluation limit without converging.
 
-Reprojection statistics use the full track set before final point filtering. The before/after BA comparison uses exactly the same observations. The essential-only and reduced-image runs construct their own track sets, so their reprojection errors depend on different observations. Mean track length and agreement over all verified image-pair matches provide additional context.
+Errors are measured at 1600×1200, before export filtering. The before/after BA rows use the same observations. Other runs use different tracks, so their errors are not directly comparable.
 
-Pair agreement is the fraction of every verified pair match whose triangulation has positive depth in both recovered cameras and at most 2 px reprojection error in each view. This check uses the same verified matches for the two 62-image pose methods. It evaluates compatibility between matched views and recovered poses.
+Pair agreement tests all verified matches for positive depth and ≤2 px error in both views, using the same matches for both 62-image pose methods.
 
 ```bash
-# Remove global BA.
+# Without BA
 python main.py --no-ba --output outputs/no_ba
 
-# Retain every second image. A larger explicit BA budget is used for this ablation.
+# Every second image
 python main.py --stride 2 --ba-evaluations 300 --output outputs/stride2
 
-# Replace PnP with chained essential-matrix poses, each with a unit baseline.
+# Chained essential-matrix poses with unit baselines
 python main.py --pose-method essential --no-ba --output outputs/essential
 ```
 
-`docs/assets/ablations.json` and the accompanying metrics files contain the measured ablation summaries.
-
 ### Limits
 
-Monocular scale is arbitrary. Ground-truth geometry and poses were unavailable, so metric accuracy and absolute trajectory error remain unmeasured. Low two-view reprojection errors can coexist with inconsistent scales between image pairs. The essential-only ablation explicitly assigns each new baseline unit length.
+This is a sparse reconstruction with arbitrary scale and limited surface coverage. No ground-truth poses or geometry were available. Low reprojection error alone does not establish 3D accuracy, particularly for the unit-baseline essential-only run. Intrinsics are fixed, distortion is ignored, and circular matching assumes this capture order; viewpoint gaps and repeated structures can break registration.
 
-The dataset has limited surface coverage. The result is a sparse point cloud. Calibration is held fixed and lens distortion is assumed negligible. Circular neighbor matching reflects this capture sequence. Large viewpoint gaps and repeated structures can break registration. The default BA budget is 100 function evaluations, and each run records whether a convergence condition was reached.
-
-## Verification
+## Checks
 
 ```bash
 python -m py_compile feature.py match.py initialize.py reconstruct.py ba.py main.py
 python -m unittest discover -s tests -v
 node --check docs/viewer.js
 ```
-
-The geometry regressions cover triangulation and pose direction, robust PnP refinement, BA gauge fixing, and retrying a failed registration candidate. GitHub Actions runs these checks on Python 3.11.
-
-The Pages workflow publishes `docs/` when manually dispatched after Pages is enabled for this repository.
-
-## Context
-
-This project rebuilds a computer-vision coursework reconstruction pipeline as a reproducible portfolio project. OpenCV supplies feature extraction and geometric estimation primitives. The project implements incremental registration, track management, triangulation filtering, sparse optimization assembly, evaluation and visualization.
