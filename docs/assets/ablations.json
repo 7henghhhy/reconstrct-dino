@@ -1,0 +1,60 @@
+[
+  {
+    "name": "PnP + BA, 31 images",
+    "cameras": 31,
+    "points": 22107,
+    "stats": {
+      "mean_px": 0.32651123525307496,
+      "median_px": 0.2587720327031292,
+      "p90_px": 0.6709679383329323,
+      "observations": 73901,
+      "positive_depth_fraction": 1.0
+    },
+    "mean_track_length": 3.342877821504501,
+    "pairwise_consistency": {
+      "tested_matches": 159906,
+      "consistent_matches": 157632,
+      "fraction": 0.985779145247833,
+      "threshold_px": 2.0,
+      "positive_depth_required": true
+    },
+    "bundle_adjustment": {
+      "enabled": true,
+      "converged": false,
+      "status": 0,
+      "message": "The maximum number of function evaluations is exceeded.",
+      "evaluations": 300,
+      "iterations": 270,
+      "seconds": 71.058,
+      "scale_camera_index": 1,
+      "scale_translation_component": 0,
+      "cost": 5940.291862737733,
+      "optimality": 1082.9080553412398
+    }
+  },
+  {
+    "name": "Essential-only, 62 images",
+    "cameras": 62,
+    "points": 64629,
+    "stats": {
+      "mean_px": 0.3114298734657476,
+      "median_px": 0.1652774143874358,
+      "p90_px": 0.7642527593228735,
+      "observations": 134591,
+      "positive_depth_fraction": 1.0
+    },
+    "mean_track_length": 2.0825171362700954,
+    "pairwise_consistency": {
+      "tested_matches": 409358,
+      "consistent_matches": 249831,
+      "fraction": 0.6102995422099972,
+      "threshold_px": 2.0,
+      "positive_depth_required": true
+    },
+    "bundle_adjustment": {
+      "enabled": false,
+      "converged": null,
+      "seconds": 0
+    }
+  }
+]
