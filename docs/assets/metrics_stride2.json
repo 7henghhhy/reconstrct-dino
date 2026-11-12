@@ -1,0 +1,301 @@
+{
+  "images": 31,
+  "registered_images": 31,
+  "initial_pair": [
+    0,
+    25
+  ],
+  "initial_points": 1334,
+  "points_before_filter": 22107,
+  "exported_points": 22106,
+  "mean_track_length": 3.342877821504501,
+  "pairwise_consistency": {
+    "tested_matches": 159906,
+    "consistent_matches": 157632,
+    "fraction": 0.985779145247833,
+    "threshold_px": 2.0,
+    "positive_depth_required": true
+  },
+  "features": 185982,
+  "matched_pairs": 186,
+  "verified_matches": 159906,
+  "processing_size": [
+    1600,
+    1200
+  ],
+  "intrinsics": [
+    [
+      1280.0,
+      0.0,
+      800.0
+    ],
+    [
+      0.0,
+      1280.0,
+      600.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "image_order": [
+    "DJI_20200223_163225_243.jpg",
+    "DJI_20200223_163017_967.jpg",
+    "DJI_20200223_163019_752.jpg",
+    "DJI_20200223_163021_627.jpg",
+    "DJI_20200223_163023_427.jpg",
+    "DJI_20200223_163025_977.jpg",
+    "DJI_20200223_163029_038.jpg",
+    "DJI_20200223_163030_687.jpg",
+    "DJI_20200223_163032_532.jpg",
+    "DJI_20200223_163034_287.jpg",
+    "DJI_20200223_163036_792.jpg",
+    "DJI_20200223_163043_257.jpg",
+    "DJI_20200223_163046_438.jpg",
+    "DJI_20200223_163048_057.jpg",
+    "DJI_20200223_163050_292.jpg",
+    "DJI_20200223_163053_007.jpg",
+    "DJI_20200223_163054_672.jpg",
+    "DJI_20200223_163056_232.jpg",
+    "DJI_20200223_163057_732.jpg",
+    "DJI_20200223_163101_047.jpg",
+    "DJI_20200223_163102_892.jpg",
+    "DJI_20200223_163104_557.jpg",
+    "DJI_20200223_163106_343.jpg",
+    "DJI_20200223_163157_823.jpg",
+    "DJI_20200223_163200_643.jpg",
+    "DJI_20200223_163202_443.jpg",
+    "DJI_20200223_163204_077.jpg",
+    "DJI_20200223_163205_713.jpg",
+    "DJI_20200223_163208_008.jpg",
+    "DJI_20200223_163209_763.jpg",
+    "DJI_20200223_163222_378.jpg"
+  ],
+  "before_ba": {
+    "mean_px": 0.8279460571673684,
+    "median_px": 0.6258907768737741,
+    "p90_px": 1.86555030399668,
+    "observations": 73901,
+    "positive_depth_fraction": 1.0
+  },
+  "after_ba": {
+    "mean_px": 0.32651123525307496,
+    "median_px": 0.2587720327031292,
+    "p90_px": 0.6709679383329323,
+    "observations": 73901,
+    "positive_depth_fraction": 1.0
+  },
+  "bundle_adjustment": {
+    "enabled": true,
+    "converged": false,
+    "status": 0,
+    "message": "The maximum number of function evaluations is exceeded.",
+    "evaluations": 300,
+    "iterations": 270,
+    "seconds": 71.058,
+    "scale_camera_index": 1,
+    "scale_translation_component": 0,
+    "cost": 5940.291862737733,
+    "optimality": 1082.9080553412398
+  },
+  "configuration": {
+    "max_size": 1600,
+    "max_features": 6000,
+    "match_gap": 6,
+    "stride": 2,
+    "pose_method": "pnp",
+    "seed": 0,
+    "ba_evaluations": 300,
+    "no_ba": false
+  },
+  "timing_seconds": {
+    "features": 3.148,
+    "matching": 63.735,
+    "pipeline": 147.258
+  },
+  "environment": {
+    "python": "3.11.15",
+    "opencv": "5.0.0",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "open3d": "0.19.0"
+  },
+  "registration": [
+    {
+      "image_index": 22,
+      "correspondences": 801,
+      "inliers": 798,
+      "points": 1882
+    },
+    {
+      "image_index": 21,
+      "correspondences": 908,
+      "inliers": 770,
+      "points": 2546
+    },
+    {
+      "image_index": 16,
+      "correspondences": 1212,
+      "inliers": 1156,
+      "points": 3120
+    },
+    {
+      "image_index": 17,
+      "correspondences": 1311,
+      "inliers": 1101,
+      "points": 3920
+    },
+    {
+      "image_index": 13,
+      "correspondences": 1418,
+      "inliers": 1279,
+      "points": 4395
+    },
+    {
+      "image_index": 12,
+      "correspondences": 1532,
+      "inliers": 1252,
+      "points": 5032
+    },
+    {
+      "image_index": 11,
+      "correspondences": 1483,
+      "inliers": 996,
+      "points": 5847
+    },
+    {
+      "image_index": 7,
+      "correspondences": 1592,
+      "inliers": 1237,
+      "points": 6565
+    },
+    {
+      "image_index": 8,
+      "correspondences": 1569,
+      "inliers": 1156,
+      "points": 7596
+    },
+    {
+      "image_index": 10,
+      "correspondences": 1716,
+      "inliers": 1282,
+      "points": 8559
+    },
+    {
+      "image_index": 9,
+      "correspondences": 1714,
+      "inliers": 1283,
+      "points": 9396
+    },
+    {
+      "image_index": 18,
+      "correspondences": 1574,
+      "inliers": 1117,
+      "points": 9922
+    },
+    {
+      "image_index": 20,
+      "correspondences": 1653,
+      "inliers": 1155,
+      "points": 10857
+    },
+    {
+      "image_index": 26,
+      "correspondences": 1588,
+      "inliers": 1365,
+      "points": 11540
+    },
+    {
+      "image_index": 2,
+      "correspondences": 1548,
+      "inliers": 1164,
+      "points": 11937
+    },
+    {
+      "image_index": 30,
+      "correspondences": 1480,
+      "inliers": 1261,
+      "points": 12564
+    },
+    {
+      "image_index": 27,
+      "correspondences": 1424,
+      "inliers": 933,
+      "points": 13245
+    },
+    {
+      "image_index": 1,
+      "correspondences": 1399,
+      "inliers": 876,
+      "points": 14150
+    },
+    {
+      "image_index": 19,
+      "correspondences": 1370,
+      "inliers": 876,
+      "points": 14755
+    },
+    {
+      "image_index": 3,
+      "correspondences": 1292,
+      "inliers": 929,
+      "points": 15486
+    },
+    {
+      "image_index": 6,
+      "correspondences": 1296,
+      "inliers": 995,
+      "points": 16434
+    },
+    {
+      "image_index": 29,
+      "correspondences": 1242,
+      "inliers": 913,
+      "points": 17244
+    },
+    {
+      "image_index": 15,
+      "correspondences": 1176,
+      "inliers": 967,
+      "points": 17658
+    },
+    {
+      "image_index": 14,
+      "correspondences": 1204,
+      "inliers": 990,
+      "points": 18543
+    },
+    {
+      "image_index": 4,
+      "correspondences": 1153,
+      "inliers": 786,
+      "points": 19316
+    },
+    {
+      "image_index": 28,
+      "correspondences": 1073,
+      "inliers": 697,
+      "points": 20081
+    },
+    {
+      "image_index": 5,
+      "correspondences": 1023,
+      "inliers": 705,
+      "points": 20937
+    },
+    {
+      "image_index": 24,
+      "correspondences": 1017,
+      "inliers": 790,
+      "points": 21414
+    },
+    {
+      "image_index": 23,
+      "correspondences": 1074,
+      "inliers": 858,
+      "points": 22107
+    }
+  ]
+}

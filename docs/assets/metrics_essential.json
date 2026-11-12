@@ -1,0 +1,510 @@
+{
+  "images": 62,
+  "registered_images": 62,
+  "initial_pair": [
+    0,
+    61
+  ],
+  "initial_points": 1355,
+  "points_before_filter": 64629,
+  "exported_points": 64629,
+  "mean_track_length": 2.0825171362700954,
+  "pairwise_consistency": {
+    "tested_matches": 409358,
+    "consistent_matches": 249831,
+    "fraction": 0.6102995422099972,
+    "threshold_px": 2.0,
+    "positive_depth_required": true
+  },
+  "features": 371985,
+  "matched_pairs": 372,
+  "verified_matches": 409358,
+  "processing_size": [
+    1600,
+    1200
+  ],
+  "intrinsics": [
+    [
+      1280.0,
+      0.0,
+      800.0
+    ],
+    [
+      0.0,
+      1280.0,
+      600.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "image_order": [
+    "DJI_20200223_163225_243.jpg",
+    "DJI_20200223_163016_842.jpg",
+    "DJI_20200223_163017_967.jpg",
+    "DJI_20200223_163018_942.jpg",
+    "DJI_20200223_163019_752.jpg",
+    "DJI_20200223_163020_712.jpg",
+    "DJI_20200223_163021_627.jpg",
+    "DJI_20200223_163022_557.jpg",
+    "DJI_20200223_163023_427.jpg",
+    "DJI_20200223_163024_597.jpg",
+    "DJI_20200223_163025_977.jpg",
+    "DJI_20200223_163028_017.jpg",
+    "DJI_20200223_163029_038.jpg",
+    "DJI_20200223_163029_877.jpg",
+    "DJI_20200223_163030_687.jpg",
+    "DJI_20200223_163031_602.jpg",
+    "DJI_20200223_163032_532.jpg",
+    "DJI_20200223_163033_432.jpg",
+    "DJI_20200223_163034_287.jpg",
+    "DJI_20200223_163035_787.jpg",
+    "DJI_20200223_163036_792.jpg",
+    "DJI_20200223_163042_402.jpg",
+    "DJI_20200223_163043_257.jpg",
+    "DJI_20200223_163045_537.jpg",
+    "DJI_20200223_163046_438.jpg",
+    "DJI_20200223_163047_307.jpg",
+    "DJI_20200223_163048_057.jpg",
+    "DJI_20200223_163049_048.jpg",
+    "DJI_20200223_163050_292.jpg",
+    "DJI_20200223_163052_122.jpg",
+    "DJI_20200223_163053_007.jpg",
+    "DJI_20200223_163053_863.jpg",
+    "DJI_20200223_163054_672.jpg",
+    "DJI_20200223_163055_437.jpg",
+    "DJI_20200223_163056_232.jpg",
+    "DJI_20200223_163056_982.jpg",
+    "DJI_20200223_163057_732.jpg",
+    "DJI_20200223_163058_602.jpg",
+    "DJI_20200223_163101_047.jpg",
+    "DJI_20200223_163101_947.jpg",
+    "DJI_20200223_163102_892.jpg",
+    "DJI_20200223_163103_777.jpg",
+    "DJI_20200223_163104_557.jpg",
+    "DJI_20200223_163105_427.jpg",
+    "DJI_20200223_163106_343.jpg",
+    "DJI_20200223_163156_668.jpg",
+    "DJI_20200223_163157_823.jpg",
+    "DJI_20200223_163159_803.jpg",
+    "DJI_20200223_163200_643.jpg",
+    "DJI_20200223_163201_633.jpg",
+    "DJI_20200223_163202_443.jpg",
+    "DJI_20200223_163203_267.jpg",
+    "DJI_20200223_163204_077.jpg",
+    "DJI_20200223_163204_859.jpg",
+    "DJI_20200223_163205_713.jpg",
+    "DJI_20200223_163206_598.jpg",
+    "DJI_20200223_163208_008.jpg",
+    "DJI_20200223_163208_938.jpg",
+    "DJI_20200223_163209_763.jpg",
+    "DJI_20200223_163210_513.jpg",
+    "DJI_20200223_163222_378.jpg",
+    "DJI_20200223_163224_103.jpg"
+  ],
+  "before_ba": {
+    "mean_px": 0.3114298734657476,
+    "median_px": 0.1652774143874358,
+    "p90_px": 0.7642527593228735,
+    "observations": 134591,
+    "positive_depth_fraction": 1.0
+  },
+  "after_ba": {
+    "mean_px": 0.3114298734657476,
+    "median_px": 0.1652774143874358,
+    "p90_px": 0.7642527593228735,
+    "observations": 134591,
+    "positive_depth_fraction": 1.0
+  },
+  "bundle_adjustment": {
+    "enabled": false,
+    "converged": null,
+    "seconds": 0
+  },
+  "configuration": {
+    "max_size": 1600,
+    "max_features": 6000,
+    "match_gap": 6,
+    "stride": 1,
+    "pose_method": "essential",
+    "seed": 0,
+    "ba_evaluations": 100,
+    "no_ba": true
+  },
+  "timing_seconds": {
+    "features": 9.183,
+    "matching": 121.813,
+    "pipeline": 141.159
+  },
+  "environment": {
+    "python": "3.11.15",
+    "opencv": "5.0.0",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "open3d": "0.19.0"
+  },
+  "registration": [
+    {
+      "image_index": 60,
+      "correspondences": 800,
+      "inliers": 755,
+      "points": 2213
+    },
+    {
+      "image_index": 59,
+      "correspondences": 1046,
+      "inliers": 0,
+      "points": 2755
+    },
+    {
+      "image_index": 58,
+      "correspondences": 1060,
+      "inliers": 48,
+      "points": 4115
+    },
+    {
+      "image_index": 53,
+      "correspondences": 1027,
+      "inliers": 15,
+      "points": 4554
+    },
+    {
+      "image_index": 52,
+      "correspondences": 1000,
+      "inliers": 0,
+      "points": 5632
+    },
+    {
+      "image_index": 54,
+      "correspondences": 851,
+      "inliers": 84,
+      "points": 6900
+    },
+    {
+      "image_index": 51,
+      "correspondences": 1098,
+      "inliers": 0,
+      "points": 8063
+    },
+    {
+      "image_index": 50,
+      "correspondences": 850,
+      "inliers": 108,
+      "points": 9209
+    },
+    {
+      "image_index": 45,
+      "correspondences": 936,
+      "inliers": 0,
+      "points": 9940
+    },
+    {
+      "image_index": 44,
+      "correspondences": 1067,
+      "inliers": 0,
+      "points": 10487
+    },
+    {
+      "image_index": 49,
+      "correspondences": 866,
+      "inliers": 189,
+      "points": 11202
+    },
+    {
+      "image_index": 43,
+      "correspondences": 932,
+      "inliers": 0,
+      "points": 12545
+    },
+    {
+      "image_index": 42,
+      "correspondences": 1004,
+      "inliers": 1,
+      "points": 13743
+    },
+    {
+      "image_index": 41,
+      "correspondences": 914,
+      "inliers": 0,
+      "points": 15117
+    },
+    {
+      "image_index": 36,
+      "correspondences": 1024,
+      "inliers": 28,
+      "points": 15924
+    },
+    {
+      "image_index": 35,
+      "correspondences": 1197,
+      "inliers": 70,
+      "points": 16250
+    },
+    {
+      "image_index": 40,
+      "correspondences": 1033,
+      "inliers": 99,
+      "points": 17138
+    },
+    {
+      "image_index": 39,
+      "correspondences": 1033,
+      "inliers": 216,
+      "points": 18755
+    },
+    {
+      "image_index": 34,
+      "correspondences": 1058,
+      "inliers": 13,
+      "points": 20027
+    },
+    {
+      "image_index": 33,
+      "correspondences": 876,
+      "inliers": 42,
+      "points": 21045
+    },
+    {
+      "image_index": 32,
+      "correspondences": 995,
+      "inliers": 197,
+      "points": 22177
+    },
+    {
+      "image_index": 27,
+      "correspondences": 1048,
+      "inliers": 751,
+      "points": 22997
+    },
+    {
+      "image_index": 26,
+      "correspondences": 1335,
+      "inliers": 0,
+      "points": 23412
+    },
+    {
+      "image_index": 31,
+      "correspondences": 1032,
+      "inliers": 4,
+      "points": 24046
+    },
+    {
+      "image_index": 25,
+      "correspondences": 1065,
+      "inliers": 37,
+      "points": 25469
+    },
+    {
+      "image_index": 24,
+      "correspondences": 889,
+      "inliers": 33,
+      "points": 26512
+    },
+    {
+      "image_index": 23,
+      "correspondences": 979,
+      "inliers": 229,
+      "points": 28050
+    },
+    {
+      "image_index": 22,
+      "correspondences": 1100,
+      "inliers": 3,
+      "points": 28903
+    },
+    {
+      "image_index": 18,
+      "correspondences": 1137,
+      "inliers": 0,
+      "points": 30008
+    },
+    {
+      "image_index": 16,
+      "correspondences": 1154,
+      "inliers": 0,
+      "points": 30538
+    },
+    {
+      "image_index": 17,
+      "correspondences": 1184,
+      "inliers": 0,
+      "points": 31495
+    },
+    {
+      "image_index": 15,
+      "correspondences": 1414,
+      "inliers": 0,
+      "points": 32404
+    },
+    {
+      "image_index": 14,
+      "correspondences": 980,
+      "inliers": 0,
+      "points": 33929
+    },
+    {
+      "image_index": 13,
+      "correspondences": 945,
+      "inliers": 315,
+      "points": 35443
+    },
+    {
+      "image_index": 12,
+      "correspondences": 964,
+      "inliers": 591,
+      "points": 36543
+    },
+    {
+      "image_index": 7,
+      "correspondences": 1221,
+      "inliers": 0,
+      "points": 37099
+    },
+    {
+      "image_index": 11,
+      "correspondences": 1115,
+      "inliers": 16,
+      "points": 37905
+    },
+    {
+      "image_index": 6,
+      "correspondences": 1165,
+      "inliers": 0,
+      "points": 39123
+    },
+    {
+      "image_index": 5,
+      "correspondences": 1044,
+      "inliers": 0,
+      "points": 40379
+    },
+    {
+      "image_index": 4,
+      "correspondences": 1136,
+      "inliers": 398,
+      "points": 41512
+    },
+    {
+      "image_index": 3,
+      "correspondences": 1188,
+      "inliers": 15,
+      "points": 43155
+    },
+    {
+      "image_index": 2,
+      "correspondences": 1058,
+      "inliers": 147,
+      "points": 44529
+    },
+    {
+      "image_index": 1,
+      "correspondences": 990,
+      "inliers": 159,
+      "points": 45965
+    },
+    {
+      "image_index": 21,
+      "correspondences": 793,
+      "inliers": 13,
+      "points": 47137
+    },
+    {
+      "image_index": 20,
+      "correspondences": 757,
+      "inliers": 22,
+      "points": 48153
+    },
+    {
+      "image_index": 38,
+      "correspondences": 754,
+      "inliers": 20,
+      "points": 49256
+    },
+    {
+      "image_index": 37,
+      "correspondences": 850,
+      "inliers": 21,
+      "points": 50638
+    },
+    {
+      "image_index": 8,
+      "correspondences": 721,
+      "inliers": 238,
+      "points": 51436
+    },
+    {
+      "image_index": 55,
+      "correspondences": 701,
+      "inliers": 99,
+      "points": 52628
+    },
+    {
+      "image_index": 19,
+      "correspondences": 691,
+      "inliers": 19,
+      "points": 54431
+    },
+    {
+      "image_index": 30,
+      "correspondences": 680,
+      "inliers": 1,
+      "points": 55636
+    },
+    {
+      "image_index": 29,
+      "correspondences": 652,
+      "inliers": 127,
+      "points": 56856
+    },
+    {
+      "image_index": 28,
+      "correspondences": 732,
+      "inliers": 0,
+      "points": 57657
+    },
+    {
+      "image_index": 57,
+      "correspondences": 650,
+      "inliers": 0,
+      "points": 58388
+    },
+    {
+      "image_index": 56,
+      "correspondences": 696,
+      "inliers": 46,
+      "points": 59876
+    },
+    {
+      "image_index": 9,
+      "correspondences": 649,
+      "inliers": 32,
+      "points": 61357
+    },
+    {
+      "image_index": 10,
+      "correspondences": 723,
+      "inliers": 3,
+      "points": 62056
+    },
+    {
+      "image_index": 48,
+      "correspondences": 593,
+      "inliers": 105,
+      "points": 63041
+    },
+    {
+      "image_index": 47,
+      "correspondences": 597,
+      "inliers": 11,
+      "points": 64062
+    },
+    {
+      "image_index": 46,
+      "correspondences": 634,
+      "inliers": 13,
+      "points": 64629
+    }
+  ]
+}

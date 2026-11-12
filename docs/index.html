@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Explore a dinosaur scene reconstructed from 62 photographs with an incremental Python Structure-from-Motion pipeline."
+    />
+    <meta name="theme-color" content="#151719" />
+    <title>Dinosaur — Structure from Motion</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="viewer.js" defer></script>
+  </head>
+  <body>
+    <header class="masthead">
+      <a class="wordmark" href="./" aria-label="Dinosaur home"
+        >Dinosaur<span class="wordmark-dot"></span
+      ></a>
+      <span class="project-type">Structure from Motion</span>
+      <a class="source-link" href="https://github.com/7henghhhy/reconstrct-dino"
+        >View source <span aria-hidden="true">↗</span></a
+      >
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="title">
+        <div>
+          <p class="eyebrow">Multi-view geometry / Python</p>
+          <h1 id="title">A scene, recovered<br />from photographs.</h1>
+        </div>
+        <p class="intro-note">
+          Explore the point cloud and camera poses recovered by a calibrated,
+          incremental SfM pipeline.
+        </p>
+      </section>
+      <section class="workspace" aria-label="Interactive reconstruction">
+        <div class="viewer">
+          <canvas
+            id="scene"
+            tabindex="0"
+            aria-label="Interactive 3D point cloud. Drag to orbit, shift-drag to pan, scroll to zoom. Use arrow keys to orbit and plus or minus to zoom."
+          ></canvas>
+          <div class="viewer-top">
+            <span class="viewer-label" id="stage-label"
+              >Full reconstruction</span
+            ><span class="viewer-label light" id="render-count"
+              >Loading scene…</span
+            >
+          </div>
+          <div class="viewer-bottom">
+            <span>Drag to orbit · Scroll to zoom · Shift-drag to pan</span
+            ><button type="button" id="reset">Reset view ↺</button>
+          </div>
+          <div id="status" role="status">Loading reconstruction…</div>
+          <noscript
+            ><p class="error">
+              Enable JavaScript to explore this reconstruction.
+            </p></noscript
+          >
+        </div>
+        <aside class="inspector">
+          <div class="inspector-heading">
+            <h2>Reconstruction</h2>
+            <span class="live-dot" aria-hidden="true"></span>
+          </div>
+          <dl class="metrics">
+            <div>
+              <dt>Registered cameras</dt>
+              <dd id="camera-count">—</dd>
+            </div>
+            <div>
+              <dt>Reconstructed points</dt>
+              <dd id="point-count">—</dd>
+            </div>
+            <div>
+              <dt>Mean reprojection error</dt>
+              <dd id="error-count">—</dd>
+            </div>
+          </dl>
+          <div class="control-group">
+            <label for="stage">Scene stage</label
+            ><select id="stage">
+              <option value="final">Full reconstruction</option>
+              <option value="initial">Two-view initialization</option>
+            </select>
+          </div>
+          <div class="toggle-row">
+            <label for="cameras">Camera frustums</label
+            ><input type="checkbox" id="cameras" />
+          </div>
+          <div class="control-group point-size">
+            <label for="point-size"
+              >Point size <output id="size-value">2.0</output></label
+            ><input
+              type="range"
+              id="point-size"
+              min="1"
+              max="5"
+              step="0.5"
+              value="2"
+            />
+          </div>
+          <div class="frame-heading">
+            <h3>Input photograph</h3>
+            <span id="frame-count">—</span>
+          </div>
+          <img
+            id="frame"
+            alt="Selected input photograph of the dinosaur exhibit"
+            width="480"
+            height="360"
+          />
+          <label class="sr-only" for="frame-slider"
+            >Select input photograph and highlight its camera</label
+          ><input
+            id="frame-slider"
+            type="range"
+            min="0"
+            max="61"
+            value="0"
+            step="1"
+          />
+          <p id="frame-name" class="frame-name"></p>
+          <a class="download" href="assets/reconstruction.ply" download
+            >Download point cloud <span aria-hidden="true">↓</span></a
+          >
+          <div class="small-links">
+            <a href="assets/camera_poses.txt" download>Camera poses</a
+            ><a href="assets/metrics.json">Run metrics</a>
+          </div>
+        </aside>
+      </section>
+      <section class="method" aria-labelledby="method-title">
+        <div class="section-heading">
+          <h2 id="method-title">From pixels to geometry</h2>
+          <p>Five stages, implemented in six Python modules.</p>
+        </div>
+        <div class="pipeline">
+          <div>
+            <h3>SIFT</h3>
+            <p>Detect local image features.</p>
+          </div>
+          <div>
+            <h3>Matching</h3>
+            <p>Mutual ratio test + RANSAC.</p>
+          </div>
+          <div>
+            <h3>Initialization</h3>
+            <p>Essential matrix + triangulation.</p>
+          </div>
+          <div>
+            <h3>Registration</h3>
+            <p>PnP + incremental triangulation.</p>
+          </div>
+          <div>
+            <h3>Bundle adjustment</h3>
+            <p>Joint sparse reprojection refinement.</p>
+          </div>
+        </div>
+        <div class="evidence">
+          <figure>
+            <img
+              src="assets/keypoints.jpg"
+              alt="SIFT keypoints detected in the reference dinosaur photograph"
+              loading="lazy"
+              width="1200"
+              height="900"
+            />
+            <figcaption>SIFT features in the reference image.</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="assets/matches.jpg"
+              alt="Geometrically verified feature correspondences between the initialization images"
+              loading="lazy"
+              width="1200"
+              height="450"
+            />
+            <figcaption>
+              Verified matches for the initialization pair.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="evaluation" aria-labelledby="evaluation-title">
+        <div class="section-heading">
+          <h2 id="evaluation-title">Measured on this run</h2>
+          <p id="resolution-note">
+            Reprojection errors are measured at the processing resolution.
+          </p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Configuration</th>
+                <th scope="col">Cameras</th>
+                <th scope="col">Points</th>
+                <th scope="col">Mean error</th>
+                <th scope="col">Median error</th>
+                <th scope="col">Track views</th>
+                <th scope="col">Pair agreement</th>
+                <th scope="col">BA status</th>
+              </tr>
+            </thead>
+            <tbody id="results-body"></tbody>
+          </table>
+        </div>
+        <p class="evaluation-note" id="ba-note"></p>
+        <p class="evaluation-note">
+          The essential-only and reduced-image runs use different feature
+          tracks. Pair agreement checks every verified match for positive depth
+          and a maximum 2 px reprojection error in both views. Monocular
+          reconstruction has arbitrary scale. Reprojection error measures image
+          consistency. Ground-truth camera poses and point clouds were
+          unavailable for this evaluation.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <span>Haoyuan Zheng · Computer vision</span
+      ><a href="https://github.com/7henghhhy/reconstrct-dino"
+        >Code & reproducibility ↗</a
+      >
+    </footer>
+  </body>
+</html>
